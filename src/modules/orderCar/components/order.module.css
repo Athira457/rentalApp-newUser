@@ -1,0 +1,81 @@
+/* order form styling starts here */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+.orderContainer {
+    font-family: poppins;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .title{
+    text-align: center;
+    padding: 8px;
+  }
+
+/* form styles  */
+  .bookingForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .checkboxGroup{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formGroup label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+/* button styling */
+  .submitButton {
+    padding: 12px 20px;
+    background-color:  #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submitButton:hover {
+    background-color: #333131;
+  } 
+
+  .exportButton{
+    padding: 12px 20px;
+    background-color: white;
+    color: #1c1c1c;
+    border:1px solid #1c1c1c;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .paragraph{
+    font-family: poppins;
+    color: #1c1c1c;
+  }

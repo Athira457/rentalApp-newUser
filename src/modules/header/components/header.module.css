@@ -1,0 +1,207 @@
+  /* Header page stylings */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ccc;
+    color: #1c1c1c;
+  }
+  
+  
+  .logoContainer {
+    display: flex;
+    align-items: center;
+  }
+   
+  .logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .appName {
+    font-size: 24px;
+    font-weight: bold;
+  }
+ 
+
+  /* search button styling */
+  .searchContainer {
+    display: flex;
+    justify-content: center;
+    margin-right: 500px;
+  }
+  
+  .searchInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 200px;
+  }
+  
+  .searchButton {
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0px 10px;
+    cursor: pointer;
+  }
+  
+  .searchIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+ /* Login Container styling */
+.loginContainer {
+  position: absolute; 
+  top: 5px;
+  right: 10px; 
+  border: 2px solid #1c1c1c; 
+  border-radius: 25px;
+}
+
+.topLog{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Styling for login and register buttons */
+.loginButton {
+  background-color: transparent;
+  color: #1c1c1c;
+  border: none;
+  border-radius: 25px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effects for the buttons */
+.loginButton:hover {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+/* Login form styling */
+.loginForm {
+  opacity: 0.9;
+  position: absolute;
+  top: 40px; 
+  right: 0;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 300px; 
+}
+
+/* Input styling for forms*/
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit button styling */
+.submitButton {
+  background-color: #1c1c1c;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #333;
+}
+
+/* modal stylings */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modalh3 {
+  margin-bottom: 10px;
+}
+
+.modalp {
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  background-color: #1c1c1c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: #45a049;
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 150px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual dropdown items (Profile, Logout) */
+.dropdownItem {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+/* Optional: Adjust dropdown appearance when it is shown */
+.dropdownItem:focus,
+.dropdownItem:active {
+  background-color: #e0e0e0;
+  outline: none;
+}

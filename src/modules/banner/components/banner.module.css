@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+.banner {
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .mainContent {
+    margin-top: 50px;
+  }
+  
+  .carImage {
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+  }
+
+  .title{
+    font-family: poppins;
+  }
+
+  .span{
+    display: block; 
+    margin-left: 50px; 
+    margin-top: 10px; 
+  }
+
+  .formSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 15px;
+  }
+
+  .h3{
+    color: #1c1c1c;
+  }
+
+  .brands{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+  }
+
+  .img1{
+    cursor: pointer;
+  }
+
+  .inputGroup {
+    color: #1c1c1c;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+  
+  .inputGroup input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+  }
+  
+  .findBtn {
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .findBtn:hover {
+    background-color: #f5f5f5;
+  }
+  
+  @media (max-width: 768px) {
+    .formSection {
+      flex-direction: column;
+    }
+  
+    .inputGroup input {
+      width: 100%;
+    }
+
+  .mainContent{
+    font-size: 14px;
+  }
+  }
+  

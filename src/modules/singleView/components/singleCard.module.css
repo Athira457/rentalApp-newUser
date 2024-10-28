@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+/* Single car view page stylings */
+.container {
+    font-family: poppins;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .vehicleDetails {
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Image display stylings */
+  .imageGallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .vehicleImage {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+  
+  .centerImage {
+    width: 200px; 
+    height: auto;
+  }
+  
+  .imageGallery:hover .vehicleImage {
+    transform: scale(0.8); 
+  }
+  
+  .vehicleImage:hover {
+    transform: scale(1.2); 
+  }
+  
+  .vehicleImage:hover ~ .vehicleImage {
+    transform: translateX(50px); 
+  }
+  
+  .vehicleImage:nth-child(2) {
+    transform: scale(1.2); 
+  }
+  
+  /* Hover effect to make the hovered image the center */
+  .imageGallery:hover .vehicleImage:hover {
+    transform: scale(1.5); 
+    z-index: 10;
+  }
+
+  .vehicleName {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .vehicleDescription {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .vehiclePrice {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .vehicleQuantity {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .rentButton {
+    padding: 10px 20px;
+    background-color: #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .rentButton:hover {
+    background-color:  #555454;
+  }
+  
+  /* Modal Background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures modal is on top */
+}
+
+/* Modal Content Box */
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out; /* Simple animation for appearance */
+}
+
+/* Close Button */
+.closeButton {
+  background-color: #ff4d4f; /* Red button for close */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.closeButton:hover {
+  background-color: #ff7875; /* Slightly lighter red on hover */
+}
+
+/* Modal text styling */
+.paragraph {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
