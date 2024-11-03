@@ -79,3 +79,16 @@
     font-family: poppins;
     color: #1c1c1c;
   }
+
+  .backDiv{
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .backBtn{
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

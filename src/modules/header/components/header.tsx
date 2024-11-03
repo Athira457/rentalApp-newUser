@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import styles from './header.module.css'; 
 import { REGISTER_USER } from '../services/userRegiserMutation';
@@ -13,6 +13,7 @@ const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState('login');
   const [showForm, setShowForm] = useState(false);
   const [message, setMessage] = useState('');
+  const [logMessage, setLogMessage] = useState('');
   const [passwordError, setPasswordError] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [loginError, setLoginError] = useState(""); 
@@ -33,6 +34,11 @@ const Header: React.FC = () => {
     password: '',
     confirmPassword: '',
   });
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if (token) setIsLoggedIn(true);
+  }, []);
 
    // Toggle the active form (login or register)
    const toggleForm = (tab: string) => {
@@ -95,8 +101,6 @@ const Header: React.FC = () => {
    const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError(""); 
-
-
     try {
       const res = await loginUser({
         variables: {
@@ -106,8 +110,7 @@ const Header: React.FC = () => {
       });    
       
       const { token, user } = res.data.loginUser; 
-      console.log("user details:",user);
-      
+      console.log("user details:",user);     
       
       if (token) {
         sessionStorage.setItem('token', token); 
@@ -123,9 +126,8 @@ const Header: React.FC = () => {
             currentUser: user.id,
           },
       });
-      console.log('User ID stored in Apollo cache:', user.id);
-      
-        setMessage('Login successful!'); 
+      console.log('User ID stored in Apollo cache:', user.id);      
+        setLogMessage('Login successful!'); 
         setIsLoggedIn(true);
         setShowForm(false);
       } else {
@@ -136,6 +138,7 @@ const Header: React.FC = () => {
       setLoginError('An error occurred during login. Please try again.');
     }
   };
+
 
   const closeModal = () => {
     // Close the modal and form 
@@ -159,7 +162,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.logoContainer}>
       <Image src={frame} alt="logo" width={25} height={25} />
-        <Link href=""><h1 className={styles.appName}>CAR RENTAL</h1></Link>
+        <Link href="/"><h1 className={styles.appName}>CAR RENTAL</h1></Link>
       </div>
 
       <div className={styles.loginContainer}>
@@ -175,6 +178,8 @@ const Header: React.FC = () => {
             {showAccountDropdown && (
               <div className={styles.dropdownContent}>
                 <Link href="/profile" className={styles.dropdownItem}>Profile
+                </Link>
+                <Link href="/bookDetails" className={styles.dropdownItem}>Booking Details
                 </Link>
                 <button className={styles.dropdownItem} onClick={handleLogout}>
                   Logout
@@ -233,7 +238,7 @@ const Header: React.FC = () => {
                 />
                 <button type="submit" className={styles.submitButton}>Login</button>
               </form>
-              {message && <p className={styles.success}>{message}</p>}
+              {logMessage && <p className={styles.success}>{logMessage}</p>}
               {loginError && <p className={styles.error}>{loginError}</p>} 
             </div>
           )}

@@ -1,12 +1,11 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_VEHICLES } from '../services/cardQueries';
 import { SEARCH_VEHICLES, FILTER_VEHICLES } from '../services/searchQueries';
 import styles from './cardsDisplay.module.css';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import CustomButton from '@/utils/customButton';
 import seat from '../../../themes/images/seatcar.svg';
 import fuel from '../../../themes/images/fuel.svg';
 import gear from '../../../themes/images/gear.svg';
@@ -39,11 +38,22 @@ const VehicleCards = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPriceRange, setSelectedPriceRange] = useState(priceRanges[0]);
   const [isFiltering, setIsFiltering] = useState(false);
+  const [delayedSearchTerm, setDelayedSearchTerm] = useState('');
+
+  // Update delayedSearchTerm after a pause in typing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayedSearchTerm(searchTerm);
+    }, 1000); 
+
+    // Clear timeout if user keeps typing
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   // Search vehicles query
   const { data: searchData, loading: searchLoading } = useQuery(SEARCH_VEHICLES, {
-    variables: { searchTerm },
-    skip: isFiltering, 
+    variables: { searchTerm: delayedSearchTerm },
+    skip: isFiltering || !delayedSearchTerm, 
   });
 
   const { data: filterData, loading: filterLoading } = useQuery(FILTER_VEHICLES, {
@@ -108,6 +118,10 @@ const VehicleCards = () => {
         {vehicles?.length ? (
           vehicles.map((vehicle: Vehicle) => (
             <div key={vehicle.id} className={styles.vehicleCard}>
+               {vehicle.quantity === 0 && (
+                <div className={styles.soldOutOverlay}>Sold Out</div>
+              )}
+              <div className={styles.vehicleDetails}>
               {vehicle.primaryimage?.images && vehicle.primaryimage.images.length > 0 ? (
                 <Image
                   src={vehicle.primaryimage.images} 
@@ -125,7 +139,7 @@ const VehicleCards = () => {
                   height={200}
                 />
               ) : (
-                <p>No Image Available</p> // Fallback if no images are found
+                <p>No Image Available</p>
               )}
               <h2 className={styles.vehicleName}>{vehicle.name}</h2>
               <p className={styles.vehiclePrice}>Price: {vehicle.price}</p>
@@ -142,14 +156,15 @@ const VehicleCards = () => {
                 </p>
               </div>
               <div className={styles.actions}>
-                <CustomButton type="submit" className={styles.rentButton} onClick={() => handleRent(vehicle.id)}>
-                  Rent Car
-                </CustomButton>
+                <button type="submit" className={styles.rentButton} onClick={() => handleRent(vehicle.id)} disabled={vehicle.quantity === 0}>
+                {vehicle.quantity === 0 ? 'Unavailable' : 'Rent Car'}
+                </button>
+              </div>
               </div>
             </div>
           ))
         ) : (
-          <p>No vehicles found matching</p>
+          <p>Loading matching...</p>
         )}
       </div>
     </div>

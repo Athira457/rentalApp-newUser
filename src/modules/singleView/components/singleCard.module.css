@@ -125,7 +125,7 @@
 
 /* Close Button */
 .closeButton {
-  background-color: #ff4d4f; /* Red button for close */
+  background-color: #ff4d4f; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -136,7 +136,7 @@
 }
 
 .closeButton:hover {
-  background-color: #ff7875; /* Slightly lighter red on hover */
+  background-color: #ff7875; 
 }
 
 /* Modal text styling */
@@ -155,4 +155,16 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+.backDiv{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.backBtn{
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }

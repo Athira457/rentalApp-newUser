@@ -5,8 +5,11 @@ import { useState } from 'react';
 import { GET_VEHICLE_BY_ID } from '../services/carQueries';
 import { GET_USER_DETAILS } from '../services/userGetQuery';
 import { CREATE_BOOKING } from '../services/bookingMutations';
+import { REDUCE_VEHICLE } from '../services/redusecarMutations';
 import styles from './order.module.css';
 import { useRouter } from 'next/navigation';
+import arrow from '../../../themes/images/back.svg';
+import Image from 'next/image';
 import * as XLSX from 'xlsx'; 
 
 const OrderForm: React.FC = () => {
@@ -19,6 +22,8 @@ const OrderForm: React.FC = () => {
   const { data: vehicleData, error: vehicleError } = useQuery(GET_VEHICLE_BY_ID, {
     variables: { id: vehicleId },
   });
+
+  const [reduceVehicleQuantity] = useMutation(REDUCE_VEHICLE);
 
   // Query to fetch user details
   const { data: userData, error: userError } = useQuery(GET_USER_DETAILS, {
@@ -42,6 +47,19 @@ const OrderForm: React.FC = () => {
     calicut: ["SM Street", "Calicut International Airport", "Calicut Railway Station"],
   };
 
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
+  const minDateTime = getCurrentDateTime();
+
+  // calculate total rent for days
   const calculateTotalRent = () => {
     if (pickupTime && dropoffTime && vehicleData) {
       const pickupDate = new Date(pickupTime);
@@ -100,6 +118,10 @@ const OrderForm: React.FC = () => {
         },
       });
 
+      await reduceVehicleQuantity({
+        variables: { id: parseInt(vehicleId || '', 10) },
+      });
+
       setMessage(`Booking confirmed for ${vehicleData.getVehicleImageById.name}. Total rent: ${total}`);
       router.push(`/payCar?bookingId=${data.createBooking.id}&amount=${total}`);
     } catch (error) {
@@ -130,6 +152,11 @@ const OrderForm: React.FC = () => {
 
   return (
     <div className={styles.orderContainer}>
+      <div className={styles.backDiv}>
+      <button className={styles.backBtn} onClick={() => router.back()}>
+      <Image src={arrow} width={25} height={25} alt="bookings" />
+      </button>
+      </div>
       <h2 className={styles.title}>Book {vehicleData.getVehicleImageById.name}</h2>
       <form onSubmit={handleSubmit} className={styles.bookingForm}>
         {/* City Checkboxes */}
@@ -206,6 +233,7 @@ const OrderForm: React.FC = () => {
             name="pickupTime"
             value={pickupTime}
             onChange={(e) => setPickupTime(e.target.value)}
+            min={minDateTime}
             required
           />
         </div>
@@ -220,6 +248,7 @@ const OrderForm: React.FC = () => {
             name="dropoffTime"
             value={dropoffTime}
             onChange={(e) => setDropoffTime(e.target.value)}
+            min={pickupTime || minDateTime}
             required
           />
         </div>

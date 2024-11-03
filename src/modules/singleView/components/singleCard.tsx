@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { GET_VEHICLE_BY_ID } from '../services/carQueries'; 
 import styles from './singleCard.module.css';
 import Image from 'next/image';
+import arrow from '../../../themes/images/back.svg';
 
 const VehicleDetails: React.FC = () => {
   const searchParams = useSearchParams();
@@ -39,8 +40,17 @@ const VehicleDetails: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    router.push('/')
+  };
+
   return (
     <div className={styles.container}>
+       <div className={styles.backDiv}>
+        <button className={styles.backBtn} onClick={handleBack}>
+        <Image src={arrow} width={25} height={25} alt="bookings" />
+        </button>
+      </div>
       <h2 className={styles.vehicleName}>{vehicle.name}</h2>
       <div className={styles.imageGallery}>
         {vehicle.secondaryimages?.map((imageObj: { images: string }, index: number) => (

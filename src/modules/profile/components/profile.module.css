@@ -1,4 +1,4 @@
-/* styles.css */
+/* styles for profile view page */
 .profileContainer {
     padding: 20px;
     max-width: 600px;
@@ -27,5 +27,46 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+  }
+  
+  /* profile picture style */
+  .profileImageContainer {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .profileImage {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+
+  .inputField {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .saveButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .saveButton:hover {
+    background-color: #005bb5;
   }
   
